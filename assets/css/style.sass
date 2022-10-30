@@ -1,0 +1,1055 @@
+@import '_vars.sass'
+@import url('https://fonts.googleapis.com/css2?family=Istok+Web:wght@400;700&display=swap')
+
+// FILE NAVIGATION
+
+// 50 AUTHORIZATION
+// 143 AUTHORIZATION Footer
+// 158 ADMIN LAYOUT
+
+*
+	margin: 0
+	padding: 0
+	box-sizing: border-box
+
+body
+	font-family: 'Istok Web', sans-serif
+	background: $bodyBackground
+	color: $adminMainTextContentColor
+
+html,
+body
+	width: 100%
+	height: 100%
+
+a
+	text-decoration: none
+	cursor: pointer
+
+li
+	list-style: none
+	list-style-type: none
+	cursor: pointer
+
+button,
+input,
+select,
+textarea
+	overflow: visible
+	outline: none
+	border-style: none
+
+button
+	cursor: pointer
+
+.page
+	min-height: 100%
+	display: flex
+	flex-direction: column
+
+.top
+	flex-grow: 1
+
+/**** AUTHORIZATION ****/
+
+.authorization
+	display: flex
+	justify-content: space-around
+	align-items: center
+	width: 610px
+	height: 400px
+	margin: 100px auto 0 auto
+	background: $authorizationBackground
+	box-shadow: 3px 3px 10px $authorizationBoxShadow
+	border-radius: 5px
+
+	&__logo
+		display: flex
+		align-items: center
+		justify-content: center
+		&_img
+			width: 260px
+	&__form
+		.form
+			display: flex
+			flex-direction: column
+			align-items: center
+			&__header
+				margin-bottom: 25px
+				font-size: 20px
+				letter-spacing: 0.07em
+				text-transform: uppercase
+				line-height: 20px
+				font-weight: normal
+				color: $formHeaderColor
+			&__row
+				position: relative
+				margin-bottom: 30px
+				input
+					display: flex
+					padding: 0 10px
+					color: $formImputTextColor
+					width: 280px
+					height: 38px
+					background: none
+					border-width: 0
+					border-bottom: 1px solid $purple
+					transition: all 0.2s ease
+					&:focus
+						border-color: $formImputLableColor
+				label
+					position: absolute
+					left: 10px
+					top: 50px
+					line-height: 10px
+					transform: translateY(-35px)
+					transition: all 0.2s ease
+					font-size: 12px
+					display: flex
+					align-items: center
+					letter-spacing: 0.05em
+					color: $formImputLableColor
+				input:focus+label,
+				input:valid+label
+					transform: translateY(-60px)
+					margin-left: -10px
+					font-size: 13px
+					font-weight: 400
+					outline: 0
+					border-color: $formImputLableColor
+					color: $purple
+			button
+				width: 280px
+				height: 38px
+				background-color: $purple
+				border-radius: 4px
+				color: $authorizationBtnNameColor
+				display: flex
+				align-items: center
+				text-align: center
+				justify-content: center
+				letter-spacing: 0.05em
+				text-transform: uppercase
+				transition: all 0.2s ease
+				&:hover
+					box-shadow: 2px 3px 3px $authorizationBtnBoxShadow
+					background-color: $authorizationBtnHoverColor
+			&__forgot
+				color: $formImputLableColor
+				font-size: 11px
+				margin-left: 180px
+				margin-top: 10px
+				transition: all 0.2s ease
+				&:hover
+					color: $purple
+
+/**** AUTHORIZATION Footer ****/
+// body
+// 	background-color: $backgroundMainContent
+
+.footer
+	height: 100px
+	display: flex
+	justify-content: space-around
+	align-items: center
+	font-size: 12px
+	a
+		color: $purple
+	&__support
+		transition: all 0.2s ease
+		&:hover
+			color: $formImputLableColor
+
+/**** ADMIN LAYOUT ****/
+
+.admin
+	width: 100%
+	background: $backgroundMainContent
+	min-height: 722px
+	letter-spacing: 0.02em
+	.header
+		width: 100%
+		height: 60px
+		display: flex
+		align-items: center
+		position: fixed
+		margin-top: -1px
+		z-index: 1001
+		background: $whight
+		border-bottom: 1px solid $adminHeaderBorderBottomColor
+		&__left
+			display: flex
+			justify-content: center
+			align-items: center
+			width: 240px
+			background: $adminBackgrounMenuPanelColor
+			border-bottom: 0.5px solid $adminLeftHeaderBorderBottomColor
+			height: 60px
+			transition: all 0.2s ease-in-out 0s
+			&_logo
+				transition: all 0.4s ease
+				img
+					display: flex
+					justify-content: center
+					align-items: center
+					width: 200px
+					height: 34px
+			.mob_logo
+				transition: all 0.4s ease
+				display: none
+				justify-content: center
+				align-items: center
+				img
+					width: 50px
+		&__right
+			width: calc(100% - 240px)
+			display: flex
+			justify-content: space-between
+			align-items: center
+			padding: 0 30px
+			transition: all 0.2s ease-in-out 0s
+			#toggle_btn
+				display: flex
+				justify-content: center
+				align-items: center
+				font-size: 20px
+				color: $toggleBtnBGColor
+				transition: all 0.2s ease-in-out 0s
+				cursor: pointer
+				&:hover
+					color: $toggleBtnHoverColor
+			.dropdown
+				position: relative
+				#dropdown_btn
+					display: flex
+					align-items: center
+					width: 50px
+					height: 55px
+					transition: all 0.2s ease-in-out 0s
+					padding: 0 50px
+					&:hover > .fa-chevron-down
+						color: $toggleBtnHoverColor
+					img
+						width: 30px
+						border-radius: 50px
+						margin-right: 5px
+					.fa-chevron-down
+						color: $purple
+						transition: all 0.2s ease-in-out 0s
+					.rotate
+						transform: rotate(-180deg)
+				&__btn
+					display: flex
+					justify-content: center
+					align-items: center
+				&__menu
+					position: absolute
+					justify-content: start
+					align-items: center
+					flex-direction: column
+					transition: all 0.2s ease-in-out 0s
+					width: 300px
+					z-index: 1002
+					transform: translate3d(-250px, 50px, 0px)
+					top: 15px
+					left: 50px
+					border: 1px solid $adminProfileBorderColor
+					border-radius: 3px
+					background-color: $whight
+					&_content
+						background-color: $adminBackgroundProfileColor
+						padding: 10px
+						justify-content: start
+						font-size: 12px
+						color: $adminProfileTextColor
+						#avatar
+							width: 40px
+							height: 40px
+							margin-right: 8px
+							img
+								width: 40px
+								border-radius: 50%
+						.name
+							font-size: 15px
+							color: $adminMainTextContentColor
+							font-weight: bold
+					&_btn
+						display: flex
+						justify-content: start
+						align-items: center
+						padding: 15px 15px
+						width: 299px
+						background-color: $adminBackgroundProfileColor
+						border-top: 1px solid $adminProfileBorderColor
+						color: $adminMainTextContentColor
+						transition: all 0.2s ease-in-out 0s
+						font-size: 14px
+						&:hover
+							background-color: $adminProfileBtnHoverBGColor
+							color: $whight
+				.active
+					display: flex
+		&__left_mob
+			width: 78px
+			.header__left_logo
+				transition: all 0.4s ease
+				img
+					display: none
+			.mob_logo
+				transition: all 0.4s ease
+				display: flex
+		&__right_mob
+			width: calc(100% - 78px)
+	.main
+		padding-top: 58px
+		&__left
+			width: 240px
+			overflow: hidden
+			position: fixed
+			transition: all 0.2s ease-in-out
+			background-color: $adminBackgrounMenuPanelColor
+			z-index: 1001
+			&_scroll
+				position: relative
+				overflow: hidden
+				width: 100%
+				height: 100vh
+				.sidebar
+					padding: 15px 0 15px 15px
+					color: $adminTextMenuPanelColor
+					&__menu
+						font-weight: normal
+						font-size: 15px
+						line-height: 20px
+						&_title
+							cursor: default
+							color: $adminTitleTextMenuPanelColor
+							display: flex
+							font-size: 14px
+							padding: 5px 15px 15px 15px
+							white-space: nowrap
+						&_list
+							align-items: center
+							border-radius: 0
+							border-top-left-radius: 20px
+							border-bottom-left-radius: 20px
+							display: flex
+							justify-content: flex-start
+							padding: 8px 15px
+							transition: all 0.2s ease-in-out 0s
+							margin-bottom: 3px
+							&:hover
+								background-color: $adminListBGMenuPanelColor
+								color: $whight
+							&:hover > a
+								color: $whight
+							a
+								color: $adminTextMenuPanelColor
+								transition: all 0.2s ease-in-out 0s
+							i
+								font-size: 18px
+								display: flex
+								justify-content: center
+								align-items: center
+						.active
+							background-color: $backgroundMainContent
+							&:hover
+								background-color: $adminListBGMenuPanelColor
+							&:hover a,
+							&:hover i
+								color: $whight
+							a, i
+								color: $adminTextLeftMenuColor
+						&_link
+							color: $backgroundMainContent
+							padding-left: 7px
+							&:hover
+								color: $whight
+		&__right
+			margin-left: 240px
+			transition: all 0.2s ease-in-out
+			.content
+				width: 100%
+				padding: 30px 30px 0
+				margin: 0 auto 30px
+				.breadcrumb
+					display: flex
+					align-items: center
+					&__item > a
+						color: $adminMainTextContentColor
+					.active > a
+						color: $breadcrumbActiveTextColor
+					&__item::after
+						padding: 0 10px
+						content: "/"
+					&__item:last-child::after
+						padding: 0px
+						content: " "
+				&__header
+					display: flex
+					flex-direction: column
+					justify-content: center
+					align-items: start
+					margin-bottom: 30px
+					&_title
+						font-size: 25px
+						color: $adminMainTextContentColor
+				&__container
+					display: flex
+					flex: 0 0 100%
+					max-width: 100%
+					&_scroll
+						width: 100%
+					&_card
+						border: 1px solid $adminHeaderBorderBottomColor
+						margin-bottom: 30px
+						border-radius: 10px
+						word-wrap: break-word
+						background-color: $bodyBackground
+						max-height: 700px
+						padding: 15px
+						flex: 1 1 auto
+					.card__body
+						overflow-x: auto
+						display: block
+						width: 100%
+						&_rows
+							display: flex
+							flex-direction: column
+							margin-bottom: 20px
+		&__left_mobile
+			width: 78px
+			&:hover
+				width: 240px
+			.main__left_scroll:hover > .sidebar .sidebar__menu .sidebar__menu_list .sidebar__menu_link
+				opacity: 1
+			.main__left_scroll:hover > .sidebar .sidebar__menu .sidebar__menu_title
+				visibility: visible
+			.sidebar__menu_link
+				opacity: 0
+			.sidebar__menu_title
+				visibility: hidden
+		&__right_mobile
+			margin-left: 78px
+	.content__tables
+		display: table
+		width: 100%
+		.table
+			display: table-row-group
+			.table__header
+				background-color: $tableTitleBGColor
+			.rows
+				display: table-row
+				&:hover
+					background-color: $tableTitleBGColor
+			.table__row_content
+				display: table-cell
+				padding: 10px
+				font-size: 14px
+				border-top: 0.5px solid $tableBorderBottomColor
+				span,
+				a
+					display: flex
+					justify-content: start
+					align-items: center
+					color: $adminMainTextContentColor
+					transition: all 0.3s ease-in-out 0s
+					white-space: nowrap
+				a:hover
+					color: $adminMainTableTextContentHoverColor
+				.title__last
+					justify-content: end
+				.actions
+					display: flex
+					justify-content: end
+					align-items: center
+					.action__btn
+						display: flex
+						justify-content: center
+						align-items: center
+						font-size: 12px
+						padding: 10px
+						border-radius: 5px
+						color: $whight
+						transition: all 0.2s ease
+						&:hover
+							box-shadow: 0px 2px 5px $authorizationBtnBoxShadow
+						span
+							display: flex
+							justify-content: center
+							align-items: center
+							margin-left: 5px
+							font-family: 'Istok Web', sans-serif
+					.fa-edit,
+						background-color: $editBtnBGColor
+						color: $editBtnTextColor
+					.fa-edit > span
+						color: $editBtnTextColor
+					.fa-trash-alt,
+						display: none //кнопка удаления пока скрыта по ненадобности
+						background-color: $deleteBtnBGColor
+						color: $deleteBtnTextColor
+					.fa-trash-alt > span
+						color: $deleteBtnTextColor
+			.patient__info
+				cursor: pointer
+				&:hover > a
+					color: $adminMainTableTextContentHoverColor
+			.title
+				border-top: none
+				font-weight: 600
+.flag__critical
+	background-color: $flagCriticalBGColor
+.flag__critical,
+.flag__normal
+	padding: 5px
+	border-radius: 10px
+	justify-content: center !important
+.flag__urgent
+	background-color: $flagUrgentBGColor
+.flag__normal
+	background-color: $flagNormalBGColor
+.badge
+	padding: 5px
+	border-radius: 10px
+	justify-content: center !important
+.badge__done
+	background-color: #DAFFAA
+.badge__clipping
+	background-color: #FFBFF9
+.badge__inprogress
+	background-color: #AAEBFF
+.badge__imported
+	background-color: #FFF6AA
+.badge__issued
+	background-color: #F2F2F2
+.influens
+	display: flex
+	align-items: center
+	justify-content: start
+	margin: 15px 0
+.insert
+	margin-right: 20px
+	span
+		font-family: 'Istok Web', sans-serif
+		font-weight: normal
+		margin-left: 5px
+.fa-plus,
+.add
+	color: $whight
+	padding: 10px 25px
+	font-size: 14px
+	background-color: $insertBtnBGColor
+	border-radius: 4px
+	transition: all 0.3s ease-in-out 0s
+	&:hover
+		color: $insertBtnTextHoverColor
+		background-color: $insertBtnBGHoverColor
+.search
+	display: flex
+	align-items: center
+	#search
+		display: flex
+		align-items: center
+	&__box
+		display: flex
+		align-items: center
+		flex-direction: column
+		margin-right: -5px
+		#search_input
+			width: 100%
+			color: $adminMainTextContentColor
+			font-size: 14px
+			min-height: 36px
+			padding: 9px 12px 9px 10px
+			border: 1px solid $inputSearchBorderColor
+			border-radius: 4px
+			&:focus,
+			&:focus > .fa-search:focus
+				border: 1px solid $inputSearchBorderFocusColor
+			&::placeholder
+				color: $inputPlaceholderTextColor
+	.fa-search
+		padding: 10.4px 15px
+		color: $whight
+		font-size: 14px
+		border-radius: 0 4px 4px 0
+		min-height: 36px
+		transition: all 0.3s ease-in-out 0s
+		background-color: $inputSearchBtnBGColor
+		border: 1px solid $inputSearchBorderColor
+		&:hover
+			background-color: $inputSearchBtnHoverBGColor
+			color: $inputSearchBtnHoverTextColor
+			border: 1px solid $inputSearchBtnHoverBGColor
+
+.modal
+	position: fixed
+	top: 0
+	left: 0
+	z-index: 1050
+	display: none // модалка
+	width: 100%
+	height: 100%
+	overflow: hidden
+	outline: 0
+	&__open
+		overflow-x: hidden
+		overflow-y: auto
+	&__dialog
+		max-width: 760px
+		margin: 30px auto
+		min-height: calc(100% - 150px)
+		transition: transform .3s ease-out
+		display: flex
+		align-items: center
+		// flex-direction: column
+		// justify-content: center
+	&__content
+		display: flex
+		flex-direction: column
+		width: 100%
+		min-height: calc(100% - 150px)
+		pointer-events: auto
+		background-color: $bodyBackground
+		background-clip: padding-box
+		border: 1px solid rgba(0,0,0,.2)
+		border-radius: 0.3rem
+		outline: 0
+		&_header
+			display: flex
+			align-items: center
+			justify-content: space-between
+			padding: 16px
+			font-size: 18px
+			border-bottom: 1px solid #dee2e6
+		&_body
+			flex: 1 1 auto
+			padding: 16px
+.modal__title
+	font-size: 18px
+.form__row
+	display: flex
+	flex-wrap: wrap
+	.content__border
+		width: 100%
+		border-bottom: 1px solid $modalContentBorderColor
+		margin: 20px 0
+	.row
+		flex: 0 0 100%
+		max-width: 100%
+		padding-right: 5px
+		padding-left: 5px
+	.row__small
+		flex: 0 0 50%
+		max-width: 50%
+	.row__small_sm3
+		flex: 0 0 33.33%
+		max-width: 33.33%
+	.row__small_sm4
+		flex: 0 0 40%
+		max-width: 40%
+	.row__small_lt
+		flex: 0 0 25%
+		max-width: 25%
+	.row__small_lt35
+		flex: 0 0 35%
+		max-width: 35%
+	.row__small_lt3
+		flex: 0 0 30%
+		max-width: 30%
+	.row__small_lt2
+		flex: 0 0 20%
+		max-width: 20%
+	.row__small_lt15
+		flex: 0 0 15%
+		max-width: 15%
+	.row__small_lt1
+		flex: 0 0 10%
+		max-width: 10%
+	.form__group_checkbox
+		display: flex
+		align-items: center
+		flex-direction: row-reverse
+		justify-content: end
+	.form__group_leftcheckbox
+		justify-content: start
+	.form__group
+		margin-bottom: 20px
+		.form__control
+			display: flex
+			width: 100%
+			padding: 6px 6px 6px 10px
+			font-size: 15px
+			font-weight: 400
+			line-height: 1.5
+			background-color: #fff
+			background-clip: padding-box
+			border: 1px solid $modalInputBorderColor
+			border-radius: 4px
+			&:focus
+				border: 1px solid $purple
+			&:not(:placeholder-shown):invalid
+				border: 1px solid $flagCriticalBGColor
+		label
+			margin-bottom: 5px
+			transition: all 0.2s ease
+			font-size: 14px
+			display: flex
+			align-items: center
+			letter-spacing: 0.01em
+		.form__control_date
+			padding: 5px 12px
+		.form__control_checkbox
+			width: auto
+			margin-right: 5px
+		.label__checkbox
+			font-size: 12px
+		.label__checkbox_left
+		.form__control_select
+			height: 36.5px
+		.form__control_textarea
+			max-width: 716px
+			min-width: 716px
+			min-height: 36px
+			max-height: 120px
+input[type="checkbox"]:checked,
+input[type="checkbox"]:not(:checked)
+	position: absolute
+	left: -9999px
+input[type="checkbox"]:checked + label,
+input[type="checkbox"]:not(:checked) + label
+	display: flex
+	position: relative
+	padding-left: 20px
+	cursor: pointer
+input[type="checkbox"]:checked + label:before,
+input[type="checkbox"]:not(:checked) + label:before
+	content: ""
+	position: absolute
+	left: 0
+	top: 0
+	width: 13px
+	height: 13px
+	border: 1px solid $modalInputBorderColor
+	background-color: $whight
+input[type="checkbox"]:checked + label:hover:before,
+input[type="checkbox"]:not(:checked) + label:hover:before
+	border: 1px solid $modalInputBorderHoverColor
+	color: $modalInputBorderHoverColor
+.label__checkbox:hover
+	color: $modalInputBorderHoverColor
+input[type="checkbox"]:checked + label:before,
+input[type="checkbox"]:not(:checked) + label:before
+	border-radius: 2px
+input[type="checkbox"]:checked + label:after,
+input[type="checkbox"]:not(:checked) + label:after
+	content: ""
+	position: absolute
+	transition: all 0.2s ease
+input[type="checkbox"]:checked + label:after,
+input[type="checkbox"]:not(:checked) + label:after
+	left: 1px
+	top: 2px
+	width: 10px
+	height: 5px
+	border-radius: 1px
+	border-left: 3px solid $modalInputCheckboxFlagColor
+	border-bottom: 3px solid $modalInputCheckboxFlagColor
+	transform: rotate(-45deg)
+input[type="checkbox"]:checked + label:hover:after,
+input[type="checkbox"]:not(:checked) + label:hover:after
+	border-left: 3px solid $modalInputCheckboxFlagHoverColor
+	border-bottom: 3px solid $modalInputCheckboxFlagHoverColor
+input[type="checkbox"]:not(:checked) + label:after
+	opacity: 0
+input[type="checkbox"]:checked + label:after
+	opacity: 1
+
+table
+	width: 100%
+	text-align: left
+	border-collapse: collapse
+	margin: 10px 0
+	tr
+		font-size: 11px
+		th,
+		td
+			border: 0.8px solid #ccc
+			padding: 5px
+
+#add_table_inputs
+	border: 1px solid $purple
+	border-radius: 4px
+	box-shadow: 0 0 10px #502b744f
+	transition: all 0.3s ease-in-out 0s
+	padding: 10px 0
+	justify-content: end
+
+	/*******Кнопки на тасках в форме добавления новой записи******/
+.todo__item
+	position: relative
+	transition: all 0.3s ease-in-out 0s
+.todo__item:hover
+	opacity: 0.7
+.todo__block_btn
+	position: absolute
+	display: flex
+	align-items: center
+	top: 0.7px
+	transform: translateX(-5%)
+	transition: all 0.3s ease-in-out 0s
+	right: -10px
+.todo__action
+	display: flex
+	justify-content: space-around
+	align-items: center
+	height: 25px
+	width: 26px
+	border-radius: 4px
+	background-color: #80deea
+	opacity: 0
+	cursor: pointer
+	transform: translateX(-5%)
+	transition: all 0.3s ease-in-out 0s
+
+.todo__action::before
+	position: absolute
+	color: $whight
+	font-size: 15px
+
+.todo__action_delete
+	background-color: #e57373
+	margin-left: 5px
+.todo__action_update
+	// right: 45px
+	background-color: #66bb6a
+.todo__item:hover .todo__block_btn
+	right: 0px
+.todo__item:hover .todo__action
+	opacity: 0.8
+
+.todo__item:hover .todo__action:hover
+	opacity: 1
+
+[data-todo-state="update"] .todo__action_update
+// [data-todo-state="deleted"] .todo__action_update
+	display: none
+
+[data-todo-state="update"]
+	background-color: #f1f8ed
+
+// [data-todo-state="deleted"] .todo__task
+// 	color: #9e9e9e
+
+[data-todo-option="update"] .todo__item:not([data-todo-state="update"]),
+[data-todo-option="deleted"] .todo__item:not([data-todo-state="deleted"])
+	display: none
+
+.modal__backdrop
+	display: none //подложка для модалки
+	position: fixed
+	top: 0
+	left: 0
+	z-index: 1040
+	width: 100vw
+	height: 100vh
+	background-color: $black
+	transition: opacity .15s linear
+.show
+	opacity: .5
+
+.close,
+.save
+	display: flex
+	align-items: center
+	justify-content: center
+	font-size: 15px
+	color: $black
+	z-index: 1
+	padding: 13px 15px
+	cursor: pointer
+	border-radius: 4px
+	transition: all 0.3s ease-in-out 0s
+	text-transform: uppercase
+	letter-spacing: 0.05em
+	&:hover
+		color: $whight
+		background-color: $modalRegisterNewEntryTitleBtnBGHoverColor
+.save
+	margin-right: 20px
+	color: $whight
+	background-color: $modalRegisterNewEntryTitleBtnBGHoverColor
+	&:hover
+		color: $purple
+		background-color: $lightPink
+.save__all
+	width: 100%
+	margin: 0
+
+.display__none
+	display: none
+
+/******PROFILE******/
+
+.profile,
+.case
+	&__header
+		display: flex
+		align-items: center
+		flex-wrap: wrap
+		&_img
+			flex: 0 0 auto
+			width: auto
+			max-width: 100%
+			padding-left: 10px
+			padding-right: 10px
+			img
+				height: auto
+				width: 120px
+				border-radius: 50%
+				vertical-align: middle
+		&_content
+			flex-basis: 0
+			flex-grow: 1
+			max-width: 100%
+			padding-left: 10px
+			padding-right: 10px
+			font-weight: normal
+			.profile__user_specialty
+				font-weight: normal
+			.profile__user_degree
+				font-weight: normal
+				color: $adminProfilePageAdditionalTextContentColor
+	&__content
+		display: flex
+		align-items: center
+		flex-wrap: wrap
+		&_box
+			flex: 1 1 auto
+		&_header
+			display: flex
+			align-items: center
+			justify-content: space-between
+			margin-bottom: 30px
+			margin-top: 10px
+			padding-right: 15px
+			padding-left: 15px
+			font-size: 17px
+		&_link
+			font-size: 14px
+			font-weight: normal
+			color: $adminProfilePageAdditionalTextContentColor
+		.row
+			display: flex
+			flex-wrap: wrap
+			margin-bottom: 15px
+			p
+				display: flex
+				align-items: start
+				padding-right: 15px
+				padding-left: 15px
+			&__title
+				color: $adminProfilePageAdditionalTextContentColor
+			&__value
+				justify-content: start
+.case
+	&__container_card
+		margin-bottom: 30px
+		border-radius: 0px 0 10px 10px
+		word-wrap: break-word
+		background-color: #fff
+		max-height: 700px
+		padding: 15px
+		flex: 1 1 auto
+		border: 2px solid $caseTabContentContainerActiveBorderColor
+	&__tabs
+		display: flex
+		margin-top: 10px
+		&_tab
+			position: relative
+			display: flex
+			align-items: center
+			justify-content: center
+			font-size: 15px
+			text-align: center
+			line-height: 50px
+			width: 150px
+			height: 50px
+			margin: 0 15px 10px 0
+			border-top: 2px solid $caseTabsBtnBorderColor
+			border-left: 2px solid $caseTabsBtnBorderColor
+			border-right: 2px solid $caseTabsBtnBorderColor
+			cursor: pointer
+			color: $caseTabsBtnBorderColor
+			border-radius: 10px 10px 0 0
+			transition: all .4s
+			.case__tabs_active,
+			&:hover
+				border-top: 2px solid $caseTabsBtnActiveBorderColor
+				border-left: 2px solid $caseTabsBtnActiveBorderColor
+				border-right: 2px solid $caseTabsBtnActiveBorderColor
+				color: $caseTabsBtnActiveBorderColor
+			.case__tabs_active,
+			&:hover::before
+				content: ""
+				position: absolute
+				bottom: 0
+				left: -2px
+				margin-bottom: -10px
+				height: 11px
+				border-left: 2px solid $caseTabsBtnActiveBorderColor
+			&:nth-child(4)
+				margin-right: 0
+		&_active
+			border-top: 2px solid $caseTabsBtnActiveBorderColor
+			border-left: 2px solid $caseTabsBtnActiveBorderColor
+			border-right: 2px solid $caseTabsBtnActiveBorderColor
+			color: $purple
+			&::before
+				content: ""
+				position: absolute
+				bottom: 0
+				left: -2px
+				margin-bottom: -10px
+				height: 11px
+				border-left: 2px solid $purple
+	&__content
+		display: flex
+		width: 100%
+		&_items
+			display: none
+			position: relative
+			width: 100%
+			.items__box
+				display: flex
+				justify-content: space-between
+				flex-wrap: wrap
+				align-items: center
+				cursor: pointer
+	&__active
+		display: block
+
+@media only screen and (max-width: 575.98px)
+	.profile__header_img
+		flex: 0 0 100%
+		margin-bottom: 20px
+		text-align: center
+
+@media only screen and (max-width: 735px)
+	.row__title,
+	.row__value
+		justify-content: start
+		flex: 0 0 100%
+		max-width: 100%
+
+@media (min-width: 736px)
+	.row__title
+		justify-content: end
+		flex: 0 0 170px
+		max-width: 170px
+	.case
+		.row__title
+			justify-content: end
+			flex: 0 0 230px
+			max-width: 230px

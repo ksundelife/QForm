@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <title>QForm</title>
+    <style>
+        @charset "UTF-8";
+        @import url("https://fonts.googleapis.com/css2?family=Istok+Web:wght@400;700&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Istok Web', sans-serif;
+            background: #eee;
+            color: #333;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        a {
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        li {
+            list-style: none;
+            list-style-type: none;
+            cursor: pointer;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            overflow: visible;
+            outline: none;
+            border-style: none;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .modal__open {
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .modal__dialog {
+            max-width: 760px;
+            margin: 30px auto;
+            min-height: calc(100% - 150px);
+            -webkit-transition: -webkit-transform .3s ease-out;
+            transition: -webkit-transform .3s ease-out;
+            transition: transform .3s ease-out;
+            transition: transform .3s ease-out, -webkit-transform .3s ease-out;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+        }
+
+        .modal__content {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            width: 100%;
+            min-height: calc(100% - 150px);
+            pointer-events: auto;
+            /* background-color: #fff; */
+            background-clip: padding-box;
+            border-radius: 40px;
+            outline: 0;
+        }
+
+        .modal__content_header {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            font-size: 18px;
+        }
+
+        .modal__content_body {
+            -webkit-box-flex: 1;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            padding: 16px;
+        }
+
+        .modal__title {
+            font-size: 18px;
+            padding: 20px;
+            box-shadow: 10px 10px 10px #cccccc, 10px 10px 10px #ffffff, 0 0 0 #cccccc inset, 0 0 0 #ffffff inset;
+            border-radius: 40px;
+        }
+
+        .form__row {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .form__row .content__border {
+            width: 100%;
+            border-bottom: 1px solid #4c4c4c;
+            margin: 20px 0;
+        }
+
+        .block__checkbox_questions-per>ul {
+            margin-left: 20px;
+        }
+
+        .form__row .row {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+            padding-right: 5px;
+            padding-left: 5px;
+        }
+
+        .form__row .row__small {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+
+        .form__row .row__small_sm3 {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 33.33%;
+            flex: 0 0 33.33%;
+            max-width: 33.33%;
+        }
+
+        .form__row .row__small_sm4 {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 40%;
+            flex: 0 0 40%;
+            max-width: 40%;
+        }
+
+        .form__row .row__small_lt {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 25%;
+            flex: 0 0 25%;
+            max-width: 25%;
+        }
+
+        .form__row .row__small_lt35 {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 35%;
+            flex: 0 0 35%;
+            max-width: 35%;
+        }
+
+        .form__row .row__small_lt3 {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 30%;
+            flex: 0 0 30%;
+            max-width: 30%;
+        }
+
+        .form__row .row__small_lt2 {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 20%;
+            flex: 0 0 20%;
+            max-width: 20%;
+        }
+
+        .form__row .row__small_lt15 {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 15%;
+            flex: 0 0 15%;
+            max-width: 15%;
+        }
+
+        .form__row .row__small_lt1 {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 10%;
+            flex: 0 0 10%;
+            max-width: 10%;
+        }
+
+        .form__row .form__group_checkbox {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: reverse;
+            -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+            -webkit-box-pack: end;
+            -ms-flex-pack: end;
+            justify-content: end;
+        }
+
+        .form__row .form__group_leftcheckbox {
+            -webkit-box-pack: start;
+            -ms-flex-pack: start;
+            justify-content: start;
+        }
+
+        .form__row .form__group {
+            margin-bottom: 20px;
+        }
+
+        .form__row .form__group .form__control {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            width: 100%;
+            padding: 6px 6px 6px 10px;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.5;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 20px;
+        }
+
+        .form__row .form__group .form__control:focus {
+            border: 1px solid #2b3c74;
+        }
+
+        .form__row .form__group .form__control:not(:placeholder-shown):invalid {
+            border: 1px solid #e63c3c;
+        }
+
+        .form__row .form__group label {
+            margin-bottom: 5px;
+            margin-left: 10px;
+            -webkit-transition: all 0.2s ease;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            letter-spacing: 0.01em;
+            font-weight: bold;
+        }
+
+        .form__row .form__group .form__control_date {
+            padding: 5px 12px;
+        }
+
+        .form__row .form__group .form__control_checkbox {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        .form__row .form__group .label__checkbox {
+            font-size: 12px;
+        }
+
+        .form__row .form__group .form__control_select {
+            height: 36.5px;
+        }
+
+        .form__row .form__group .form__control_textarea {
+            max-width: 716px;
+            min-width: 716px;
+            min-height: 36px;
+            max-height: 120px;
+        }
+
+        input[type="checkbox"]:checked,
+        input[type="checkbox"]:not(:checked) {
+            position: absolute;
+            left: -9999px;
+        }
+
+        input[type="checkbox"]:checked+label,
+        input[type="checkbox"]:not(:checked)+label {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            position: relative;
+            padding-left: 20px;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"]:checked+label:before,
+        input[type="checkbox"]:not(:checked)+label:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 4px;
+            width: 13px;
+            height: 13px;
+            border: 1px solid #ced4da;
+            background-color: #FFFFFF;
+        }
+
+        input[type="checkbox"]:checked+label:hover:before,
+        input[type="checkbox"]:not(:checked)+label:hover:before {
+            border: 1px solid #2b3c74;
+            color: #2b3c74;
+        }
+
+        .label__checkbox:hover {
+            color: #2b3c74;
+        }
+
+        input[type="checkbox"]:checked+label:before,
+        input[type="checkbox"]:not(:checked)+label:before {
+            border-radius: 2px;
+        }
+
+        input[type="checkbox"]:checked+label:after,
+        input[type="checkbox"]:not(:checked)+label:after {
+            content: "";
+            position: absolute;
+            -webkit-transition: all 0.2s ease;
+            transition: all 0.2s ease;
+        }
+
+        input[type="checkbox"]:checked+label:after,
+        input[type="checkbox"]:not(:checked)+label:after {
+            left: 1px;
+            top: 6px;
+            width: 10px;
+            height: 5px;
+            border-radius: 1px;
+            border-left: 3px solid #333;
+            border-bottom: 3px solid #333;
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+
+        input[type="checkbox"]:checked+label:hover:after,
+        input[type="checkbox"]:not(:checked)+label:hover:after {
+            border-left: 3px solid #2b3c74;
+            border-bottom: 3px solid #2b3c74;
+        }
+
+        input[type="checkbox"]:not(:checked)+label:after {
+            opacity: 0;
+        }
+
+        input[type="checkbox"]:checked+label:after {
+            opacity: 1;
+        }
+
+        table {
+            width: 100%;
+            text-align: left;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        table tr {
+            font-size: 11px;
+        }
+
+        table tr th,
+        table tr td {
+            border: 0.8px solid #ccc;
+            padding: 5px;
+        }
+
+        #add_table_inputs {
+            border-radius: 40px;
+            -webkit-box-shadow: 10px 10px 10px #cccccc, 10px 10px 10px #ffffff, 0 0 0 #cccccc inset, 0 0 0 #ffffff inset;
+            box-shadow: 10px 10px 10px #cccccc, 10px 10px 10px #ffffff, 0 0 0 #cccccc inset, 0 0 0 #ffffff inset;
+            -webkit-transition: all 0.3s ease-in-out 0s;
+            transition: all 0.3s ease-in-out 0s;
+            padding: 20px 20px;
+            -webkit-box-pack: end;
+            -ms-flex-pack: end;
+            justify-content: end;
+            margin-bottom: 40px;
+            background-color: white;
+        }
+
+        /*******Кнопки на тасках в форме добавления новой записи******/
+        .todo__item {
+            position: relative;
+            -webkit-transition: all 0.3s ease-in-out 0s;
+            transition: all 0.3s ease-in-out 0s;
+        }
+
+        .todo__item:hover {
+            opacity: 0.7;
+        }
+
+        .todo__block_btn {
+            position: absolute;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            top: 0.7px;
+            -webkit-transform: translateX(-5%);
+            transform: translateX(-5%);
+            -webkit-transition: all 0.3s ease-in-out 0s;
+            transition: all 0.3s ease-in-out 0s;
+            right: -10px;
+        }
+
+        .todo__action {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-pack: distribute;
+            justify-content: space-around;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            height: 25px;
+            width: 26px;
+            border-radius: 40px;
+            background-color: #333;
+            opacity: 0;
+            cursor: pointer;
+            -webkit-transform: translateX(-5%);
+            transform: translateX(-5%);
+            -webkit-transition: all 0.3s ease-in-out 0s;
+            transition: all 0.3s ease-in-out 0s;
+        }
+
+        .todo__action::before {
+            position: absolute;
+            background-color: #333;
+            font-size: 15px;
+        }
+
+        .todo__action_delete {
+            color: #e57373;
+            margin-left: 5px;
+        }
+
+        .todo__action_update {
+            color: #66bb6a;
+        }
+
+        .todo__item:hover .todo__block_btn {
+            right: 0px;
+        }
+
+        .todo__item:hover .todo__action {
+            opacity: 0.8;
+        }
+
+        .todo__item:hover .todo__action:hover {
+            opacity: 1;
+        }
+
+        [data-todo-state="update"] {
+            background-color: #f1f8ed;
+        }
+
+        [data-todo-option="update"] .todo__item:not([data-todo-state="update"]),
+        [data-todo-option="deleted"] .todo__item:not([data-todo-state="deleted"]) {
+            display: none;
+        }
+
+        .close,
+        .save {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            font-size: 15px;
+            color: #000;
+            z-index: 1;
+            padding: 13px 15px;
+            cursor: pointer;
+            border-radius: 40px;
+            -webkit-transition: all 0.3s ease-in-out 0s;
+            transition: all 0.3s ease-in-out 0s;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .close:hover,
+        .save:hover {
+            color: #FFFFFF;
+            background-color: #2b3c74;
+        }
+
+        .save {
+            color: #FFFFFF;
+            background-color: #2b3c74;
+        }
+
+        .save:hover {
+            color: #2b3c74;
+            background-color: #d7d6eb;
+        }
+
+        .save__all {
+            width: 760px;
+            margin: 0;
+        }
+
+        .todo__add,
+        .todo__cancel,
+        .todo__save_update {
+            margin-right: 20px;
+        }
+
+        .fa-plus,
+        .add {
+            color: #FFFFFF;
+            padding: 5px 10px;
+            font-size: 14px;
+            background-color: #2b3c74;
+            border-radius: 40px;
+            -webkit-transition: all 0.3s ease-in-out 0s;
+            transition: all 0.3s ease-in-out 0s;
+            display: flex;
+            margin-top: 3px;
+        }
+
+        .fa-plus:hover,
+        .add:hover {
+            color: #2b3c74;
+            background-color: #d7d6eb;
+        }
+
+        .ul__div {
+            padding: 16px;
+        }
+
+        .btn__container_save {
+            margin-top: 50px;
+        }
+
+        .btn__container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .btn__container>a {
+            background-color: #b36b33;
+        }
+
+        .btn__container>a:hover {
+            color: #5c1818;
+            background-color: #e3c6ad;
+        }
+
+        .panel__link::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 40px;
+            background: #4059e9e1;
+            transform: scale(0);
+            transition: all 0.4s;
+        }
+
+        .panel__link:hover::after {
+            transform: scale(0.8);
+        }
+
+        .panel__link::before {
+            content: attr(data-text);
+            position: fixed;
+            top: 30px;
+            right: 63px;
+            border-radius: 40px;
+            width: 450px;
+            height: auto;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            color: rgb(51, 51, 51);
+            background: rgb(223 229 243);
+            padding: 20px;
+            display: none;
+        }
+
+        .panel__link:hover::before {
+            display: flex;
+        }
+
+        .display__none {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="modal modal__open" id="add_registration_log">
+            <div class="modal__dialog">
+                <div class="modal__content" id="modal__contents">
+
+                </div>
+                <div class="btn__container_save">
+                    <a href='#' class="save save__all" onclick="location.reload()">Сохранить</a>
+                </div>
+                <div class="btn__container">
+                    <a download="data.txt" href='#' id="link" class="save">Выгрузить все
+                        ответы в файл</a>
+                    <a href='#' class="save clear__localStorage">Очистить все таблицы с ответами</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="todoBlocks.js"></script>
+    <script src="todoQBlocks.js"></script>
+    <script src="todoModule.js"></script>
+    <script src="fileModule.js"></script>
+</body>
+
+</html>
